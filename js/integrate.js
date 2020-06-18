@@ -5,6 +5,7 @@ function initFontes(){
     $.ajax({
         url: 'https://agenciabrandmark.com.br/faculdade/api/loader.php?query=sources?language=pt--country=br--apiKey=849a73de9f724d84afd5a4df9040477f',
     }).done((data)=>{
+        data = $.parseJSON(data);
         if (data.status == 'ok') {
             let fontes = data.sources;
             let retorno = '';
@@ -12,7 +13,7 @@ function initFontes(){
                 retorno += '<li><a class="fonte" data-title="Notícias da fonte: ' + i.name + '" data-fonte="' + i.id + '" href="?sources=' + i.id + '">' + i.name + '</a></li>';
             });
             $('.fontes').html(retorno);
-        } else {source
+        } else {
             console.log('Erro ao encontrar fontes');
         }
     });
@@ -41,6 +42,7 @@ function searchNoticias(q=''){
     $.ajax({
         url: 'https://agenciabrandmark.com.br/faculdade/api/loader.php?query=everything?q=' + q + '--apiKey=849a73de9f724d84afd5a4df9040477f--pageSize=10--language=pt',
     }).done((data) => {
+        data = $.parseJSON(data);
         if (data.status == 'ok') {
             let destaques = data.articles;
             let retorno = '';
@@ -92,6 +94,7 @@ function getDestaques(page = 1, categoria = '',fonte = '',home = false){
     $.ajax({
         url: 'https://agenciabrandmark.com.br/faculdade/api/loader.php?query=top-headlines?apiKey=849a73de9f724d84afd5a4df9040477f--pageSize=15--page=' + page + categoria + fonte
     }).done((data) => {
+        data = $.parseJSON(data);
         if (data.status == 'ok') {
             let destaques = data.articles;
             let retorno = '';
