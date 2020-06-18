@@ -3,7 +3,7 @@ function setTitle(title= ''){
 }
 function initFontes(){
     $.ajax({
-        url: 'http://newsapi.org/v2/sources?language=pt&country=br&apiKey=849a73de9f724d84afd5a4df9040477f',
+        url: 'https://newsapi.org/v2/sources?language=pt&country=br&apiKey=849a73de9f724d84afd5a4df9040477f',
     }).done((data)=>{
         if (data.status == 'ok') {
             let fontes = data.sources;
@@ -39,7 +39,7 @@ function initBanner(data){
 function searchNoticias(q=''){
     $('#banner').css('display', 'none');
     $.ajax({
-        url: 'http://newsapi.org/v2/everything?q=' + q + '&apiKey=849a73de9f724d84afd5a4df9040477f&pageSize=10&language=pt',
+        url: 'https://newsapi.org/v2/everything?q=' + q + '&apiKey=849a73de9f724d84afd5a4df9040477f&pageSize=10&language=pt',
     }).done((data) => {
         if (data.status == 'ok') {
             let destaques = data.articles;
@@ -90,7 +90,7 @@ function getDestaques(page = 1, categoria = '',fonte = '',home = false){
         categoria = '';
     }
     $.ajax({
-        url: 'http://newsapi.org/v2/top-headlines?apiKey=849a73de9f724d84afd5a4df9040477f&pageSize=15&page=' + page + categoria + fonte
+        url: 'https://newsapi.org/v2/top-headlines?apiKey=849a73de9f724d84afd5a4df9040477f&pageSize=15&page=' + page + categoria + fonte
     }).done((data) => {
         if (data.status == 'ok') {
             let destaques = data.articles;
