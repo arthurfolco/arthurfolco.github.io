@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+    <title>TODAY NEWS - Portal de notícias</title>
+  </head>
+  <body>
+    <!-- Header --> 
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="logo">
+                        <img src="img/logomarca.png" alt="">
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </header>
+    <!-- Fim Header --> 
+    <!-- Menu principal -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="categoria nav-link" href="?categoria=general"  data-title="Últimas notícias"data-category="general">Página Inicial</a>
+                </li>
+                <li class="nav-item">
+                    <a class="categoria nav-link" href="?categoria=business"  data-title="Economia" data-category="business">Economia</a>
+                </li>
+                <li class="nav-item">
+                    <a class="categoria nav-link" href="?categoria=entertainment"  data-title="Entreterimento" data-category="entertainment">Entreterimento</a>
+                </li>
+                <li class="nav-item">
+                    <a class="categoria nav-link" href="?categoria=health" data-title="Saúde"  data-category="health">Saúde</a>
+                </li>
+                <li class="nav-item">
+                    <a class="categoria nav-link" href="?categoria=science"  data-title="Ciência" data-category="science">Ciência</a>
+                </li>
+                <li class="nav-item">
+                    <a class="categoria nav-link" href="?categoria=sports"  data-title="Esporte" data-category="sports">Esporte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="categoria nav-link" href="?categoria=technology" data-title="Tecnologia"  data-category="technology">Tecnologia</a>
+                </li>
+            </ul>
+                <form class="form-inline mt-2 mt-md-0 search" >
+                    <input class="form-control mr-sm-2" id="search-input" type="text" placeholder="Buscar .." aria-label="Buscar">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Fim Menu principal -->
+
+    <!-- Banner -->
+    <div id="banner">
+        <div class="container">
+            <div id="banner_noticias" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#banner_noticias" data-slide-to="0" class="active"></li>
+                    <li data-target="#banner_noticias" data-slide-to="1"></li>
+                    <li data-target="#banner_noticias" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+
+                </div>
+                <a class="carousel-control-prev" href="#banner_noticias" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#banner_noticias" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fim Banner -->
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-8" id="main">
+                <!--    main -->
+                <!-- Noticia Exclusiva -->
+                <h2 class="title-page">Últimas notícias</h2>
+                <div class="featureds">
+
+                </div>
+                <!-- Fim Noticia Exclusiva -->
+                <hr/>
+                <!-- Listagem de noticias -->
+                <div class="row noticias-list">
+              
+                </div>
+                <!-- Fim Listagem de noticias -->
+
+            </div>
+            <div class="col-md-4 side-bar">
+                <!-- side bar-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Categorias</h2>
+                        <hr />
+                    </div>
+                    <div class="col-md-12">
+                        <ul class="list-inline">
+                            <li><a class="categoria" href="?categoria=general" data-title="Últimas notícias" data-category="general">Geral</a></li>
+                            <li><a class="categoria" href="?categoria=business" data-title="Economia" data-category="business">Economia</a></li>
+                            <li><a class="categoria" href="?categoria=entertainment" data-title="Entreterimento" data-category="entertainment">Entreterimento</a></li>
+                            <li><a class="categoria" href="?categoria=health" data-title="Saúde" data-category="health">Saúde</a></li>
+                            <li><a class="categoria" href="?categoria=science" data-title="Ciência" data-category="science">Ciência</a></li>
+                            <li><a class="categoria" href="?categoria=sports" data-title="Esporte" data-category="sports">Esporte</a></li>
+                            <li><a class="categoria" href="?categoria=technology" data-title="Tecnologia" data-category="technology">Tecnologia</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Fontes Utilizadas</h2>
+                        <hr/>
+                    </div>
+                    <div class="col-md-12">
+                        <ul class="list-inline fontes">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Fim side bar-->
+            </div>
+        </div>
+    </div>
+    <!-- Rodapé-->
+    <footer class="py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Sobre nos</h3>
+                    <p>Site de notícias vinculado ao NewsApi, feito para um trabalho de faculdade.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Mapa do site</h3>
+                    <ul class="list-inline">
+                            <li><a class="categoria" href="?categoria=general" data-title="Últimas notícias" data-category="general">Geral</a></li>
+                            <li><a class="categoria" href="?categoria=business" data-title="Economia" data-category="business">Economia</a></li>
+                            <li><a class="categoria" href="?categoria=entertainment" data-title="Entreterimento"
+                                    data-category="entertainment">Entreterimento</a></li>
+                            <li><a class="categoria" href="?categoria=health" data-title="Saúde" data-category="health">Saúde</a></li>
+                            <li><a class="categoria" href="?categoria=science" data-title="Ciência" data-category="science">Ciência</a></li>
+                            <li><a class="categoria" href="?categoria=sports" data-title="Esporte" data-category="sports">Esporte</a></li>
+                            <li><a class="categoria" href="?categoria=technology" data-title="Tecnologia" data-category="technology">Tecnologia</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Rede sociais</h3>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">Facebook</li>
+                        <li class="list-inline-item">Instagram</li>
+                        <li class="list-inline-item">Youtube</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Rodapé-->
+    <script src="js/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.js" ></script>
+    <script src="js/momment.js"></script>
+    <script src="js/integrate.js"></script>
+  </body>
+</html>
