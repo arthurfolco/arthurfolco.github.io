@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="css/bootstrap.css" >
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-
     <title>TODAY NEWS - Portal de notícias</title>
   </head>
   <body>
@@ -110,6 +109,15 @@
                 <!-- side bar-->
                 <div class="row">
                     <div class="col-md-12">
+                        <h2>Pesquisas Salvas</h2>
+                        <hr />
+                        <div id="pesquisas_salvas">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                         <h2>Categorias</h2>
                         <hr />
                     </div>
@@ -172,6 +180,30 @@
             </div>
         </div>
     </footer>
+    <!-- Modal -->
+    <div class="modal fade" id="addPesquisaModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Salvar Pesquisa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="">Titulo do menu</label>
+                    <input type="text" class="form-control"  id="titulo_pesquisa">
+                    <br/>
+                    <label for="">Texto da pesquisa</label>
+                    <input type="text" class="form-control"  id="texto_pesquisa">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveSearch()">Salvar pesquisa</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Rodapé-->
     <script src="js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
