@@ -3,9 +3,8 @@ function setTitle(title= ''){
 }
 function initFontes(){
     $.ajax({
-        url: 'https://agenciabrandmark.com.br/faculdade/api/loader.php?query=sources?language=pt--country=br--apiKey=849a73de9f724d84afd5a4df9040477f',
+        url: 'https://newsapi.org/v2/sources?language=pt&country=br&apiKey=849a73de9f724d84afd5a4df9040477f',
     }).done((data)=>{
-        data = $.parseJSON(data);
         if (data.status == 'ok') {
             let fontes = data.sources;
             let retorno = '';
@@ -13,7 +12,7 @@ function initFontes(){
                 retorno += '<li><a class="fonte" data-title="Notícias da fonte: ' + i.name + '" data-fonte="' + i.id + '" href="?sources=' + i.id + '">' + i.name + '</a></li>';
             });
             $('.fontes').html(retorno);
-        } else {
+        } else {source
             console.log('Erro ao encontrar fontes');
         }
     });
@@ -40,9 +39,8 @@ function initBanner(data){
 function searchNoticias(q=''){
     $('#banner').css('display', 'none');
     $.ajax({
-        url: 'https://agenciabrandmark.com.br/faculdade/api/loader.php?query=everything?q=' + q + '--apiKey=849a73de9f724d84afd5a4df9040477f--pageSize=10--language=pt',
+        url: 'https://newsapi.org/v2/everything?q=' + q + '&apiKey=849a73de9f724d84afd5a4df9040477f&pageSize=10&language=pt',
     }).done((data) => {
-        data = $.parseJSON(data);
         if (data.status == 'ok') {
             let destaques = data.articles;
             let retorno = '';
@@ -64,6 +62,7 @@ function searchNoticias(q=''){
 
             $('.featureds').html('');
             $('.noticias-list').html(retorno);
+            setTitle('Busca por: "' + q + '"' + buttonSave());
             window.history.pushState('data', 'Buscando por : ' + q, window.location.pathname + '?q=' + q);
         } else {
             console.log('Erro ao encontrar fontes');
@@ -72,29 +71,28 @@ function searchNoticias(q=''){
 }
 function getDestaques(page = 1, categoria = '',fonte = '',home = false){
     if(categoria != null && categoria != ''){
-        categoria = '--country=br--category=' + categoria
+        categoria = '&country=br&category=' + categoria
     }else{
         categoria = '';
     }
     if(fonte != null && fonte != ''){
-        fonte = '--sources='+fonte;
+        fonte = '&sources='+fonte;
     }else{
         fonte = '';
     }
     if(categoria != '' || fonte != ''){
         home = false;
     }
-    if (categoria == '' && fonte == '' || categoria == 'general' && fonte == '' || categoria == '--country=br--category=general'){
+    if (categoria == '' && fonte == '' || categoria == 'general' && fonte == '' || categoria == '&country=br&category=general'){
         home = true;
-        categoria = '--country=br';
+        categoria = '&country=br';
     }
     if(fonte != ''){
         categoria = '';
     }
     $.ajax({
-        url: 'https://agenciabrandmark.com.br/faculdade/api/loader.php?query=top-headlines?apiKey=849a73de9f724d84afd5a4df9040477f--pageSize=15--page=' + page + categoria + fonte
+        url: 'https://newsapi.org/v2/top-headlines?apiKey=849a73de9f724d84afd5a4df9040477f&pageSize=15&page=' + page + categoria + fonte
     }).done((data) => {
-        data = $.parseJSON(data);
         if (data.status == 'ok') {
             let destaques = data.articles;
             let retorno = '';
@@ -145,6 +143,67 @@ function getDestaques(page = 1, categoria = '',fonte = '',home = false){
         }
     });
 }
+function buttonSave(){
+    return '<button class="btn ml-3 btn-primary btn-sm" data-toggle="modal" data-target="#addPesquisaModal" onclick="openModal()">Salvar pesquisa</button>';
+}
+
+function refreshSearch(){
+    let data = JSON.parse(localStorage.getItem('pesquisa'));
+    let content = '<ul class="list-inline">';
+    if(!data){
+        content += '<li><small>Nenhuma pesquisa salva</small></li>';
+    }else{
+        data.map((item,index)=>{
+            content += '<li style="margin-top:10px;"><a href="#" onclick="searchNoticias(\'' + item.texto + '\')">' + item.titulo +'</a><a onclick="deleteSearch(\''+index+'\')" style="margin-top: -5px;color:#fff" class="btn btn-sm btn-danger float-right">x</a></li>';
+        });
+    }
+    content += '</ul>';
+    $("#pesquisas_salvas").html(content);
+}
+function openModal(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const search = urlParams.get('q');
+    if (search){
+        $("#texto_pesquisa").val(search);
+    }
+    let id = $(this).attr('data-target');
+    $(id).modal('show');
+}
+function deleteSearch(index = null){
+    let data = JSON.parse(localStorage.getItem('pesquisa'));
+    let newData = [];
+    if (data) {
+        data.map((item,i)=>{
+            if(i != index)
+                newData.push(item);
+        })
+        localStorage.setItem('pesquisa', JSON.stringify(newData));
+        refreshSearch();
+    }
+}
+function saveSearch(){
+
+    let titulo_pesquisa = $("#titulo_pesquisa").val();
+    let texto_pesquisa = $("#texto_pesquisa").val();
+    if (!titulo_pesquisa || !texto_pesquisa){
+        alert('Preencha o todos campos!');
+    }else{
+        let search = {
+            'titulo': titulo_pesquisa,
+            'texto' : texto_pesquisa
+        }
+        let pesquisas = [];
+        if(localStorage.getItem('pesquisa')){
+            pesquisas = JSON.parse(localStorage.getItem('pesquisa'));
+        }
+        pesquisas.push(search);
+        localStorage.setItem('pesquisa', JSON.stringify(pesquisas));
+        refreshSearch();
+        $("#titulo_pesquisa").val('');
+        $("#addPesquisaModal").modal('hide');
+    }
+    
+}
 function resetActived(){
     $('.active-link').each(function(){
         $(this).removeClass('active-link');
@@ -152,6 +211,7 @@ function resetActived(){
 }
 
 $(document).ready(()=>{
+    refreshSearch();
     const urlParams = new URLSearchParams(window.location.search);
     const categoria = urlParams.get('categoria');
     const sources = urlParams.get('sources');
@@ -169,7 +229,6 @@ $(document).ready(()=>{
         var q = $('#search-input').val();
         if(q!= ''){
             searchNoticias(q);
-            setTitle('Busca por: "'+ q + '"');
         }
     });
     $(".categoria").click(function(e){
