@@ -14,7 +14,6 @@ function initFontes(){
             $('.fontes').html(retorno);
         } else 
             console.log('Erro ao encontrar fontes');
-        }
     });
 }
 
